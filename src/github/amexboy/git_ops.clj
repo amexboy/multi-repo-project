@@ -1,5 +1,5 @@
-(ns code-war.git-ops
-  (:use [code-war.shell :only [sh]]))
+(ns github.amexboy.git-ops
+  (:use [github.amexboy.shell :only [sh]]))
 
 (defn git-prune-worktree [root]
   "Removes dead worktrees"
@@ -28,10 +28,3 @@
    (sh "git" "checkout" base-branch :dir root) :and-log (println "Git checking out" base-branch "finished")
    (git-create-worktree root dir branch base-branch) :and-log (println "Worktree created!"))
   )
-
-(defn -main [& args]
-  (git-add-worktree "/Users/amanuel.mekonnen/auto1/refund-service/"
-                    "master"
-                    "/Users/amanuel.mekonnen/auto1/tickets/MOS-1234/refund-service/"
-                    "master"
-                    ))

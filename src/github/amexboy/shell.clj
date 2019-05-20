@@ -1,4 +1,4 @@
-(ns code-war.shell
+(ns github.amexboy.shell
   (:require [clojure.java.shell :as sh])
   (:use [clojure.pprint]))
 

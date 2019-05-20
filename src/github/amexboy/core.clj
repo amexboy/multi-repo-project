@@ -1,6 +1,6 @@
-(ns code-war.core
+(ns github.amexboy.core
   (:require [clojure.tools.cli :refer [parse-opts] :as opts])
-  (:use [code-war.modules-loader]
+  (:use [github.amexboy.modules-loader]
         [clojure.string :only [split]])
   (:gen-class))
 
@@ -31,20 +31,18 @@
 (defn validate-options [options]
   (every? #(options %) [:branch :modules]))
 
-(defn dispatch [{:keys [list source-root name branch base-branch modules] :as options}]
+(defn dispatch
+  [{:keys [list source-root name branch modules] :as options}]
   (if list
     (list-modules source-root)
-    (if
-      (create-project  source-root name branch modules options)
-      (println "Something went wrong. Missing either branch or modules. -h for help" options))
-    ))
+    (create-project  source-root name branch modules options)))
 
 (defn -main [& args]
   (let [{:keys [options errors summary]} (opts/parse-opts args cli-options :strict true)]
     (cond
       (or errors (:help options)) (println errors "\n Usage: \n" summary)
       (validate-options options) (dispatch options)
-      :default
+      :default (println "Missing either branch or modules\n Usage: \n" summary)
       ))
   )
 

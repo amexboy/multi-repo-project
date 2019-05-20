@@ -1,8 +1,8 @@
-(ns code-war.modules-loader
+(ns github.amexboy.modules-loader
   (:require [clojure.java.io :as io])
   (:use [clojure.java.shell :only [sh]]
-        [code-war.git-ops]
-        [code-war.project-gen]))
+        [github.amexboy.git-ops]
+        [github.amexboy.project-gen]))
 
 (defn list-modules [root]
   "Returns a list of module name in this root"

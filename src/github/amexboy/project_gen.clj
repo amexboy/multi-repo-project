@@ -1,4 +1,4 @@
-(ns code-war.project-gen
+(ns github.amexboy.project-gen
   (:require [clojure.string :as st]
             [clojure.java.io :as io]))
 
@@ -127,10 +127,3 @@
     (io/make-parents dir)
     (spit dir (project-ipr (module-components root modules))))
   )
-
-;
-;(defn -main [& args]
-;      (gen-ipr "/Users/amanuel.mekonnen/auto1/tickets_clj/"
-;               "MOS-TEST",
-;               `("refund-service", "java-api", "accounting-service"), {})
-;      (println (project-ipr (module-components `("refund-service", "java-api", "accounting-service")))))
