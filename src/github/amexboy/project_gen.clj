@@ -62,7 +62,7 @@
 (defn module-entries [root module]
   "Returns component entries for git, pom (gradle soon) and git component lists"
   (let [entries {
-                 :iml (str "<module filepath=\"file://$PROJECT_DIR$/" module "/" module ".iml\"")
+                 :iml (str "<module filepath=\"$PROJECT_DIR$/" module "/" module ".iml\" />")
                  :git (str "<mapping directory=\"$PROJECT_DIR$/" module "\" vcs=\"Git\" />")
                  }
         module-file (io/file root module)]
@@ -73,7 +73,7 @@
   )
 
 (defn reducer [r v]
-  (reduce #(assoc %1 %2 (cons (%2 r) (%2 v)))
+  (reduce #(assoc %1 %2 (conj (%2 r) (%2 v)))
           r (keys v)))
 
 (defn module-components [root modules]
@@ -106,14 +106,14 @@
 
           <component name=\"ProjectModuleManager\">
             <modules>
-                " (st/join "\n\t\t\t\t" (:iml module-components)) "
+                " (st/join "\n\t\t\t\t" (:iml module-components) ) "
             </modules>
           </component>
           <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_8\" default=\"false\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">
             <output url=\"file://$PROJECT_DIR$/out\" />
           </component>
           <component name=\"VcsDirectoryMappings\">
-            " (st/join "\n\t\t\t" (:git module-components)) "
+            " (st/join "\n\t\t\t" (:git module-components) ) "
           </component>
           <component name=\"ChangeListManager\">
             <list default=\"true\" id=\"6ad0e189-9fce-4c3a-92b7-a19a9f7997b1\" name=\"${ticketId}\" comment=\"${ticketId}\" />

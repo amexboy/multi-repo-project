@@ -31,11 +31,16 @@
 (defn validate-options [options]
   (every? #(options %) [:branch :modules]))
 
+(defn coalesce
+  "Returns first non-nil argument."
+  [& args]
+  (first (keep identity args)))
+
 (defn dispatch
   [{:keys [list source-root name branch modules] :as options}]
   (if list
     (list-modules source-root)
-    (create-project  source-root name branch modules options)))
+    (create-project  source-root (coalesce name branch) branch modules options)))
 
 (defn -main [& args]
   (let [{:keys [options errors summary]} (opts/parse-opts args cli-options :strict true)]
