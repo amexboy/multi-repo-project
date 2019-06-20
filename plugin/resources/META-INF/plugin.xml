@@ -1,0 +1,33 @@
+<idea-plugin>
+  <id>com.amanu</id>
+  <name>Generate IntelliJ project</name>
+  <version>1.0</version>
+  <vendor email="negaamanuel@gmail.com" url="http://www.amanu.com">YourCompany</vendor>
+
+  <description><![CDATA[
+     Generate an IntelliJ project. Clones the repository from github
+    ]]></description>
+
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="NEW_CUSTOM_PROJECT" class="NewCustomProjectAction" text="New Custom Project"
+            description="An action that creates and start project">
+      <add-to-group group-id="FileMenu" anchor="first"/>
+    </action>
+  </actions>
+
+</idea-plugin>
